@@ -3,6 +3,7 @@ package com.example.leonpsilva.todo_list.adpter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +47,20 @@ public class TarefaAdapter extends ArrayAdapter<Tarefa> {
         TextView textViewDesc = listaItem.findViewById(R.id.textViewDescTarefa);
 
         textViewNome.setText((tarefaAtual.getNome()));
-        textViewStatus.setText(tarefaAtual.getStatus().toString());
+
         textViewDesc.setText(tarefaAtual.getDescricao().toString());
 
+        ConstraintLayout contraintlayout = listaItem.findViewById(R.id.layoutListaTarefa);
+        if (!tarefaAtual.getStatus()) {
+            textViewStatus.setText("Concluir");
+            //coloca cor verde
+            contraintlayout.setBackgroundColor(context.getResources().getColor(R.color.colorDone));
+        }
+        else {
+            textViewStatus.setText("");
+            //coloca cor vermelha
+            contraintlayout.setBackgroundColor(context.getResources().getColor(R.color.colorToDo));
+        }
         return  listaItem;
     }
 }

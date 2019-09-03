@@ -55,12 +55,21 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                tarefas.get(position).setStatus(!tarefas.get(position).getStatus());
+                listView.invalidateViews();
+                return false;
+            }
+        });
+
     }
 
     public void criarTarefas(){
-        tarefas.add(new Tarefa("1","Estudar Android","Estude!!",false));
+        tarefas.add(new Tarefa("1","Estudar Android","Estudo todo o conteudo!!",false));
         tarefas.add(new Tarefa("2","Estudar Testes","Estude Tbm!!",false));
-        tarefas.add(new Tarefa("3","Jogar Coup","Jogue Coup",false));
+        tarefas.add(new Tarefa("3","Jogar Coup","Jogue Coup",true));
     }
 
 }
